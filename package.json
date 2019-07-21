@@ -1,7 +1,7 @@
 {
   "name": "api-site-base",
   "version": "1.0.0",
-  "description": "REST API for ANG-SSR site",
+  "description": "REST API for ANG-SSR site base",
   "main": "dist/index.js",
   "scripts": {
     "clean": "rimraf dist/*",
