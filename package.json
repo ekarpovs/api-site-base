@@ -1,7 +1,7 @@
 {
-  "name": "vsign-api",
+  "name": "api-site-base",
   "version": "1.0.0",
-  "description": "REST API for Vsign site",
+  "description": "REST API for ANG-SSR site",
   "main": "dist/index.js",
   "scripts": {
     "clean": "rimraf dist/*",
