@@ -19,9 +19,9 @@ export const create: RequestHandler = async (req, res, next) => {
   const { error } = validateUser(req.body);
   if (error) { return res.status(400).send(error.details[0].message); }
 
-  // Check if the user with the name && domain already exists -
+  // Check if the user with the name already exists -
   // additional to DB indexes definitions - need to send user friendly message
-  const nameExist = await User.findOne({name: req.body.name, domain: req.body.domain});
+  const nameExist = await User.findOne({name: req.body.name});
   if (nameExist) { return res.status(400).send('The user already exists'); }
 
   // Hash password
@@ -29,9 +29,8 @@ export const create: RequestHandler = async (req, res, next) => {
   const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
   const newUser = new User({
-    access: req.body.access,
-    email: req.body.email,
-    locked: false,
+    firstname: req.body.firstname,
+    lastname: req.body.lasttname,
     name: req.body.name,
     password: hashedPassword
   });

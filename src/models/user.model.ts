@@ -1,19 +1,15 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
 export interface IUserModel extends Document {
-  access: boolean[];
-  created: Date;
-  email: string;
-  locked: boolean;
+  firstname: string;
+  lastname: string;
   name: string;
   password: string;
 }
 
 const UserSchema: Schema = new Schema({
-  access: { type: [Boolean], default: [false, false, false, false] },
-  created: { type: Date, default: Date.now() },
-  email: String,
-  locked: Boolean,
+  firstname: { type: String, required: true, unique: false },
+  lastname: { type: String, required: true, unique: false },
   name: { type: String, required: true, unique: false },
   password: String
 });
