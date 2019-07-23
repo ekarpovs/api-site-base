@@ -8,7 +8,7 @@ dotenv.config();
 
 // Connect to MongoDb
 const dbOptions = {
-    url: 'mongodb://localhost/vsadmindb',
+    url: 'mongodb://localhost/angssradmindb',
     useCreateIndex: true,
     useNewUrlParser: true
 };
