@@ -11,7 +11,7 @@ const UserSchema: Schema = new Schema({
   firstname: { type: String, required: true, unique: false },
   lastname: { type: String, required: true, unique: false },
   password: String,
-  username: { type: String, required: true, unique: false }
+  username: { type: String, required: true, unique: true }
 });
 
 UserSchema.index({ name: 1 }, { unique: true });
