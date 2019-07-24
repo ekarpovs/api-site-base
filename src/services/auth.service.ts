@@ -13,6 +13,7 @@ export const createAuthPayload = (user: any) => {
   // Additional info
   const expDate = Date.now() + 1000 * 60 * 60 * 2; // 2 h from now
   const currentUser = { id: user._id, username: user.username };
+  
   return { idToken: token, expiresIn: expDate, currentUser };
 };
 // @TODO: Move to separate service
