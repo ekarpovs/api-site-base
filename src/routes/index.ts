@@ -5,7 +5,7 @@ import * as auth from './auth.routes';
 export const register = ( app: Application ) => {
   // define a route handler for the default home page
   app.get( '/', ( req: Request, res: Response ) => {
-    res.send( 'VSign server works!' );
+    res.send( 'API site base server works!' );
   } );
 
   api.register( app );
