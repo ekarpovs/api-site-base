@@ -65,12 +65,11 @@ export const update: RequestHandler = async (req, res, next) => {
   }
 };
 
-export const lock: RequestHandler = async (req, res, next) => {
+export const remove: RequestHandler = async (req, res, next) => {
   try {
     const id = req.params.id;
-    const updateData = { locked: true };
-    const updated = await User.findByIdAndUpdate(id, updateData, { new: true });
-    return res.json(updated);
+    await User.remove(id);
+    return res.json('removed');
   } catch ( error ) {
     return next(error);
   }
