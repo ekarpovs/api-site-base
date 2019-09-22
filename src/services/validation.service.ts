@@ -3,6 +3,10 @@ import { IUserModel } from '../models/user.model';
 
 export const validateUser = (data: IUserModel) => {
   const schema = {
+    email: Joi.string()
+      .min(6)
+      .required()
+      .email(),
     firstname: Joi.string()
       .min(4)
       .required(),

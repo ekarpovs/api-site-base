@@ -29,6 +29,7 @@ export const create: RequestHandler = async (req, res, next) => {
   const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
   const newUser = new User({
+    email: req.body.email,
     firstname: req.body.firstname,
     lastname: req.body.lastname,
     password: hashedPassword,
