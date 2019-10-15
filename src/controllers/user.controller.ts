@@ -6,8 +6,7 @@ import { validateUser } from '../services/validation.service';
 
 export const list: RequestHandler = async (req, res, next) => {
   try {
-    const domain = req.query.domain;
-    const users = await User.find(domain ? {domain} : {});
+    const users = await User.find();
     return res.json(users);
   } catch ( error ) {
     return next(error);
@@ -24,16 +23,14 @@ export const create: RequestHandler = async (req, res, next) => {
   const nameExist = await User.findOne({username: req.body.username});
   if (nameExist) { return res.status(400).send('The user already exists'); }
 
+  const { password, ...rest } = req.body;
   // Hash password
   const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(req.body.password, salt);
+  const hashedPassword = await bcrypt.hash(password, salt);
 
   const newUser = new User({
-    email: req.body.email,
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    password: hashedPassword,
-    username: req.body.username
+    ...rest,
+    password: hashedPassword
   });
 
   try {
@@ -57,8 +54,7 @@ export const one: RequestHandler = async (req, res, next) => {
 export const update: RequestHandler = async (req, res, next) => {
   try {
     const id = req.params.id;
-    const newItem = req.body;
-    const { ...updateData } = newItem;
+    const { password, ...updateData } = req.body;
     const updated = await User.findByIdAndUpdate(id, updateData, { new: true });
     return res.json(updated);
   } catch ( error ) {
@@ -69,8 +65,8 @@ export const update: RequestHandler = async (req, res, next) => {
 export const remove: RequestHandler = async (req, res, next) => {
   try {
     const id = req.params.id;
-    await User.remove(id);
-    return res.json('removed');
+    const user = await User.findByIdAndRemove(id);
+    return res.json(user._id);
   } catch ( error ) {
     return next(error);
   }

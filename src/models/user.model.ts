@@ -16,7 +16,7 @@ const UserSchema: Schema = new Schema({
   username: { type: String, required: true, unique: true }
 });
 
-UserSchema.index({ name: 1 }, { unique: true });
+UserSchema.index({ username: 1 }, { unique: true });
 
 // Export the model and return IUser interface
 export default mongoose.model<IUserModel>('User', UserSchema);
