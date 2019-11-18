@@ -13,7 +13,8 @@ const dbUrl = process.env.NODE_ENV === 'prod' ?
 const dbOptions = {
     url: dbUrl,
     useCreateIndex: true,
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 };
 connector.DbConnector.connect(dbOptions);
 
